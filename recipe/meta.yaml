@@ -10,16 +10,16 @@ source:
   sha256: fd92a38fffe5f7e0432849fe1ba981ec4ac0f06033d921e30b4cc0c9fbcdd0a2
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install -vv .
 
 requirements:
   host:
-    - python >3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >3.6
+    - python >={{ python_min }}
     - pandas
     - rptools
 
@@ -30,6 +30,7 @@ test:
     - genes2doe
   requires:
     - pytest
+    - python {{ python_min }}
   commands:
     - python -m pytest
 
